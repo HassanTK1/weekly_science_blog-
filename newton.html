@@ -271,41 +271,6 @@
     <div class="masthead-vol">Natural Philosophy</div>
   </header>
 
-  <!-- ══ VOLUMES LIBRARY ══
-       To add a new volume: copy a vol-card block, update the vol number,
-       name, status, and href. Remove class="locked" when the page is live.
-  ══ -->
-  <nav class="volumes-bar" aria-label="All volumes">
-    <div class="volumes-inner" id="vol-list">
-
-      <a class="vol-card active" href="newton.html" aria-current="page">
-        <span class="vol-num">Vol. I</span>
-        <span class="vol-info">
-          <span class="vol-name">Isaac Newton</span>
-          <span class="vol-status">Published</span>
-        </span>
-      </a>
-
-      <a class="vol-card locked" href="fourier.html">
-        <span class="vol-num">Vol. II</span>
-        <span class="vol-info">
-          <span class="vol-name">Joseph Fourier</span>
-          <span class="vol-status">Coming soon</span>
-        </span>
-      </a>
-
-      <!-- ADD NEW VOLUMES BELOW THIS LINE
-      <a class="vol-card locked" href="lagrange.html">
-        <span class="vol-num">Vol. III</span>
-        <span class="vol-info">
-          <span class="vol-name">Joseph-Louis Lagrange</span>
-          <span class="vol-status">Coming soon</span>
-        </span>
-      </a>
-      -->
-
-    </div>
-  </nav>
 
   <section class="hero">
     <div class="hero-eyebrow">The Most Influential Scientist in History</div>
@@ -386,5 +351,7 @@
     <span>1643 – 1727 &nbsp;·&nbsp; Cambridge, England</span>
   </footer>
 
+  <script src="volumes.js"></script>
+  <script>buildVolumesNav("newton.html");</script>
 </body>
 </html>
