@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph Fourier — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --surface: #f9f9f9; --heading: #333333;
+      --body: #5a5a5a; --soft: #808080; --faint: #bbbbbb;
+      --rule: #e8e8e8; --accent: #b06060; --tint: #fdf8f8;
+    }
+    html { font-size: 18px; }
+    body { background: var(--bg); color: var(--body); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
+    .masthead { padding: 1.1rem 3.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); }
+    .masthead-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--heading); }
+    .masthead-vol { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); }
+    /* volumes bar styles (shared) */
+    .volumes-bar { border-bottom: 1px solid var(--rule); background: var(--surface); padding: 0 3.5rem; overflow-x: auto; scrollbar-width: none; }
+    .volumes-bar::-webkit-scrollbar { display: none; }
+    .volumes-inner { display: flex; align-items: stretch; }
+    .vol-card { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.75rem; border-right: 1px solid var(--rule); text-decoration: none; transition: background 0.15s; white-space: nowrap; position: relative; }
+    .vol-card:first-child { padding-left: 0; }
+    .vol-card:hover:not(.active):not(.locked) { background: #efefef; }
+    .vol-card.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+    .vol-card.locked { opacity: 0.4; pointer-events: none; }
+    .vol-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+    .vol-card.locked .vol-num { color: var(--faint); }
+    .vol-info { display: flex; flex-direction: column; gap: 0.15rem; }
+    .vol-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: var(--heading); line-height: 1; }
+    .vol-card.locked .vol-name { color: var(--soft); }
+    .vol-status { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
+    .vol-card.active .vol-status { color: var(--accent); }
+    /* placeholder */
+    .placeholder { max-width: 1100px; margin: 0 auto; padding: 8rem 3.5rem; text-align: center; }
+    .placeholder-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .placeholder-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; color: var(--heading); margin-bottom: 1rem; line-height: 1; }
+    .placeholder-title em { font-style: italic; color: var(--accent); display: block; }
+    .placeholder-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-brand">The Great Minds of Science</div>
+    <div class="masthead-vol">Natural Philosophy</div>
+  </header>
+
+  <div class="placeholder">
+    <div class="placeholder-eyebrow">Volume II — Coming Soon</div>
+    <h1 class="placeholder-title">Joseph<br><em>Fourier</em></h1>
+    <p class="placeholder-note">This volume is in preparation</p>
+  </div>
+
+  <script src="volumes.js"></script>
+  <script>buildVolumesNav("fourier.html");</script>
+</body>
+</html>
