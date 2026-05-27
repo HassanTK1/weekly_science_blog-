@@ -25,7 +25,7 @@ const VOLUMES = [
     name:   "Joseph Fourier",
     sub:    "Mathematician",
     file:   "fourier.html",
-    live:   false,
+    live:   true,
   },
   // ── ADD NEW VOLUMES HERE ──────────────────────────
   // {
