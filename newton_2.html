@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Isaac Newton — Science's Greatest Mind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #ffffff;
+      --surface: #f9f9f9;
+      --heading: #333333;
+      --body:    #5a5a5a;
+      --soft:    #808080;
+      --faint:   #bbbbbb;
+      --rule:    #e8e8e8;
+      --accent:  #b06060;
+      --tint:    #fdf8f8;
+    }
+
+    html { font-size: 18px; }
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: 'Source Serif 4', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 1px solid var(--rule);
+      padding: 1.1rem 3.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .masthead-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: 0.03em;
+    }
+    .masthead-vol {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5.5rem 3.5rem 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+    }
+    .hero-name em {
+      display: block;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin: 1.6rem 0 2rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .hero-sub span::before { content: '·'; margin-right: 1.5rem; color: var(--rule); }
+    .hero-sub span:first-child::before { display: none; }
+    .hero-deck {
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--soft);
+      max-width: 860px;
+      border-left: 2px solid var(--rule);
+      padding-left: 1.4rem;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 3.5rem 2.5rem;
+    }
+
+    .section {
+      border-left: 2px solid var(--accent);
+      background: var(--tint);
+      padding: 2.2rem 2.2rem 2.2rem 2rem;
+      margin-bottom: 1.4rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--heading);
+      margin-bottom: 1.1rem;
+    }
+
+    .section p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--body);
+    }
+    .section p + p { margin-top: 1em; }
+    .section strong { color: var(--heading); font-weight: 600; }
+    .section em { color: var(--soft); }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 3.5rem;
+      text-align: center;
+    }
+    .pull-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      font-style: italic;
+      color: var(--heading);
+      max-width: 860px;
+      margin: 0 auto 1rem;
+      line-height: 1.6;
+    }
+    .pull-quote blockquote::before { content: '\201C'; color: var(--faint); }
+    .pull-quote blockquote::after  { content: '\201D'; color: var(--faint); }
+    .pull-quote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-style: normal;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.4rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp 0.6s ease both; }
+
+    @media (max-width: 860px) {
+      .masthead, .hero, .content, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .pull-quote { padding: 2.5rem 1.5rem; }
+      .hero-sub { flex-wrap: wrap; gap: 0.75rem; }
+      footer { flex-direction: column; gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-brand">The Great Minds of Science</div>
+    <div class="masthead-vol">Volume I &nbsp;·&nbsp; Natural Philosophy</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-eyebrow">The Most Influential Scientist in History</div>
+    <h1 class="hero-name">Isaac<br><em>Newton</em></h1>
+    <div class="hero-sub">
+      <span>1643 – 1727</span>
+      <span>Cambridge, England</span>
+      <span>Natural Philosopher</span>
+    </div>
+    <p class="hero-deck">
+      Before his twenty-sixth birthday, Newton had invented calculus, formulated the theory of universal gravitation, and established the foundations of classical mechanics and optics — achievements that no single scientist, before or since, has come close to matching in scope.
+    </p>
+  </section>
+
+  <main class="content">
+
+    <div class="section">
+      <div class="section-tag">The Annus Mirabilis · 1665–1666</div>
+      <h2 class="section-title">A Year of Wonders, Worked in Isolation</h2>
+      <p>
+        In 1665 the Great Plague swept through England and Cambridge University closed its gates. Newton, twenty-three years old and freshly graduated, retreated to his family farm at Woolsthorpe, Lincolnshire. What followed across those eighteen months stands as the most concentrated outpouring of original scientific genius in recorded history. Working alone, with no laboratory and no colleagues, he simultaneously broke ground in mathematics, physics, and optics — fields that had not advanced significantly in decades. He later described it simply as the period when he was <strong>"in the prime of his age for invention."</strong>
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Mathematics</div>
+      <h2 class="section-title">The Invention of Calculus</h2>
+      <p>
+        Among Newton's earliest and most enduring achievements was the invention of his "method of fluxions" — the system of mathematics the world now calls differential and integral calculus. Beginning with the binomial theorem, he developed a general method for computing areas under curves as infinite series, then derived an equally general method for rates of change, and finally discovered that these two operations are inverses of each other: the fundamental theorem of calculus. It was an entirely new branch of mathematics, constructed from nothing, by a man in his early twenties.
+      </p>
+      <p>
+        The mathematical language Newton built became the indispensable tool for expressing change, motion, and accumulation — without it, modern physics, engineering, and economics as we know them could not exist.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Physics</div>
+      <h2 class="section-title">Universal Gravitation and the Laws of Motion</h2>
+      <p>
+        It was during the same Woolsthorpe period that Newton first grasped what would become his theory of universal gravitation — the insight that the force drawing objects toward the Earth and the force holding the Moon in its orbit are one and the same, governed by a single mathematical law. The force between any two masses, he determined, is proportional to each of their masses and diminishes with the square of the distance between them. It was a breathtaking unification: the heavens and the Earth obeyed identical rules.
+      </p>
+      <p>
+        The full mathematical proof, along with his three laws of motion — inertia, force proportional to acceleration, and equal-and-opposite reaction — appeared in his <em>Philosophiæ Naturalis Principia Mathematica</em> in 1687. Its laws governed every branch of mechanics and astronomy without revision for over two hundred years, and remain the working framework for spacecraft navigation and structural engineering today.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Optics</div>
+      <h2 class="section-title">Light, Colour, and the Reflecting Telescope</h2>
+      <p>
+        Newton's prism experiments at Woolsthorpe overturned a belief held since antiquity: that white light is a pure, undifferentiated substance. By passing sunlight through a prism and observing that it separated into a full spectrum of colours — and then recombining those colours back into white light through a second prism — he demonstrated that white light is in fact a mixture of every colour. This discovery formed the foundation of the science of optics.
+      </p>
+      <p>
+        The same insight led Newton to a practical invention: recognising that lenses in existing telescopes split light into its component colours and blurred images as a result, he designed and hand-built the first <strong>reflecting telescope</strong> in 1668, using mirrors in place of lenses to eliminate the distortion entirely. The reflecting telescope design remains the basis for virtually every large observatory on Earth and in orbit, including the Hubble Space Telescope.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Legacy</div>
+      <h2 class="section-title">The Measure of His Influence</h2>
+      <p>
+        The scale of Newton's influence on science is difficult to overstate. A Royal Society poll ranked him above Albert Einstein as the single greatest influence on the history and development of science. Einstein himself, whose theory of general relativity superseded Newtonian mechanics at cosmic scales, acknowledged that Newton's achievement was the greatest single intellectual advance in human history.
+      </p>
+      <p>
+        Newton was knighted by Queen Anne in 1705 — the first scientist to receive that honour in recognition of scientific work — and was buried with state honours in Westminster Abbey. The poet Alexander Pope wrote his epitaph: <em>"Nature and nature's laws lay hid in night; God said, Let Newton be! and all was light."</em> Three centuries on, the assessment holds.
+      </p>
+    </div>
+
+  </main>
+
+  <div class="pull-quote">
+    <blockquote>If I have seen further, it is by standing on the shoulders of Giants.</blockquote>
+    <cite>Isaac Newton — Letter to Robert Hooke, 5 February 1675</cite>
+  </div>
+
+  <footer>
+    <span>The Great Minds of Science &nbsp;·&nbsp; Vol. I: Isaac Newton</span>
+    <span>1643 – 1727 &nbsp;·&nbsp; Cambridge, England</span>
+  </footer>
+
+</body>
+</html>
