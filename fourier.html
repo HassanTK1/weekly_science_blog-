@@ -3,56 +3,352 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Joseph Fourier — Coming Soon</title>
+  <title>Joseph Fourier — The Great Minds of Science</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #ffffff; --surface: #f9f9f9; --heading: #333333;
-      --body: #5a5a5a; --soft: #808080; --faint: #bbbbbb;
-      --rule: #e8e8e8; --accent: #b06060; --tint: #fdf8f8;
+      --bg:      #ffffff;
+      --surface: #f9f9f9;
+      --heading: #333333;
+      --body:    #5a5a5a;
+      --soft:    #808080;
+      --faint:   #bbbbbb;
+      --rule:    #e8e8e8;
+      --accent:  #b06060;
+      --tint:    #fdf8f8;
     }
+
     html { font-size: 18px; }
-    body { background: var(--bg); color: var(--body); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
-    .masthead { padding: 1.1rem 3.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); }
-    .masthead-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--heading); }
-    .masthead-vol { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); }
-    /* volumes bar styles (shared) */
-    .volumes-bar { border-bottom: 1px solid var(--rule); background: var(--surface); padding: 0 3.5rem; overflow-x: auto; scrollbar-width: none; }
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: 'Source Serif 4', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      padding: 1.1rem 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+    }
+    .masthead-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: 0.03em;
+    }
+    .masthead-vol {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ── VOLUMES BAR (injected by volumes.js) ── */
+    .volumes-bar {
+      border-bottom: 1px solid var(--rule);
+      background: var(--surface);
+      padding: 0 3.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
     .volumes-bar::-webkit-scrollbar { display: none; }
     .volumes-inner { display: flex; align-items: stretch; }
-    .vol-card { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.75rem; border-right: 1px solid var(--rule); text-decoration: none; transition: background 0.15s; white-space: nowrap; position: relative; }
+    .vol-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.75rem;
+      border-right: 1px solid var(--rule);
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
     .vol-card:first-child { padding-left: 0; }
     .vol-card:hover:not(.active):not(.locked) { background: #efefef; }
-    .vol-card.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+    .vol-card.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
     .vol-card.locked { opacity: 0.4; pointer-events: none; }
-    .vol-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+    .vol-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
     .vol-card.locked .vol-num { color: var(--faint); }
     .vol-info { display: flex; flex-direction: column; gap: 0.15rem; }
-    .vol-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: var(--heading); line-height: 1; }
+    .vol-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1;
+    }
     .vol-card.locked .vol-name { color: var(--soft); }
-    .vol-status { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
+    .vol-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
     .vol-card.active .vol-status { color: var(--accent); }
-    /* placeholder */
-    .placeholder { max-width: 1100px; margin: 0 auto; padding: 8rem 3.5rem; text-align: center; }
-    .placeholder-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
-    .placeholder-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; color: var(--heading); margin-bottom: 1rem; line-height: 1; }
-    .placeholder-title em { font-style: italic; color: var(--accent); display: block; }
-    .placeholder-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-top: 2.5rem; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5.5rem 3.5rem 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+    }
+    .hero-name em {
+      display: block;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin: 1.6rem 0 2rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .hero-sub span::before { content: '·'; margin-right: 1.5rem; color: var(--rule); }
+    .hero-sub span:first-child::before { display: none; }
+    .hero-deck {
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--soft);
+      max-width: 860px;
+      border-left: 2px solid var(--rule);
+      padding-left: 1.4rem;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 3.5rem 2.5rem;
+    }
+
+    .section {
+      border-left: 2px solid var(--accent);
+      background: var(--tint);
+      padding: 2.2rem 2.2rem 2.2rem 2rem;
+      margin-bottom: 1.4rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--heading);
+      margin-bottom: 1.1rem;
+    }
+
+    .section p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--body);
+    }
+    .section p + p { margin-top: 1em; }
+    .section strong { color: var(--heading); font-weight: 600; }
+    .section em { color: var(--soft); }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 3.5rem;
+      text-align: center;
+    }
+    .pull-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      font-style: italic;
+      color: var(--heading);
+      max-width: 860px;
+      margin: 0 auto 1rem;
+      line-height: 1.6;
+    }
+    .pull-quote blockquote::before { content: '\201C'; color: var(--faint); }
+    .pull-quote blockquote::after  { content: '\201D'; color: var(--faint); }
+    .pull-quote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-style: normal;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.4rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp 0.6s ease both; }
+
+    @media (max-width: 860px) {
+      .masthead, .hero, .content, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .pull-quote { padding: 2.5rem 1.5rem; }
+      .hero-sub { flex-wrap: wrap; gap: 0.75rem; }
+      footer { flex-direction: column; gap: 0.4rem; }
+    }
   </style>
 </head>
 <body>
+
   <header class="masthead">
     <div class="masthead-brand">The Great Minds of Science</div>
     <div class="masthead-vol">Natural Philosophy</div>
   </header>
 
-  <div class="placeholder">
-    <div class="placeholder-eyebrow">Volume II — Coming Soon</div>
-    <h1 class="placeholder-title">Joseph<br><em>Fourier</em></h1>
-    <p class="placeholder-note">This volume is in preparation</p>
+  <section class="hero">
+    <div class="hero-eyebrow">Volume II — Mathematician & Physicist</div>
+    <h1 class="hero-name">Joseph<br><em>Fourier</em></h1>
+    <div class="hero-sub">
+      <span>1768 – 1830</span>
+      <span>Auxerre, France</span>
+      <span>Mathematician</span>
+    </div>
+    <p class="hero-deck">
+      A tailor's orphan who marched to Egypt with Napoleon, governed a French province, and in his spare hours quietly dismantled two thousand years of mathematical assumption — then spent fifteen years being told he was wrong by the greatest minds in Europe.
+    </p>
+  </section>
+
+  <main class="content">
+
+    <div class="section">
+      <div class="section-tag">Egypt · 1798–1801</div>
+      <h2 class="section-title">Napoleon's Expedition and the Institut d'Égypte</h2>
+      <p>
+        In 1798 Napoleon Bonaparte outfitted the most ambitious scientific expedition in history, assembling over 150 scholars, engineers, and mathematicians alongside his army for an invasion of Egypt. Fourier, then thirty years old and a professor at the newly founded École Polytechnique in Paris, was selected as one of the three principal scientific advisors on the campaign. He was assigned to the mathematics section of the newly established <strong>Institut d'Égypte</strong> in Cairo — a body whose members included Gaspard Monge, Étienne Malus, and Napoleon himself.
+      </p>
+      <p>
+        Fourier was elected secretary of the Institut, a role he held for the entire French occupation. He helped establish educational institutions across Egypt, carried out archaeological surveys, consulted on engineering and diplomatic undertakings, and coordinated the vast scientific fieldwork that would eventually be compiled into the monumental <em>Description de l'Égypte</em> — a twenty-three volume encyclopaedia of Egyptian civilisation that Fourier also wrote the historical preface for. When Napoleon abandoned his army and returned to Paris in 1799, Fourier remained at his post. He left Egypt only in 1801 following the French military capitulation to British forces, returning to France with the remnants of the expedition.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Grenoble · 1802–1814</div>
+      <h2 class="section-title">A Prefect Who Did Mathematics in His Spare Time</h2>
+      <p>
+        On his return to France, Fourier hoped to resume his academic post in Paris. Napoleon had other plans. In January 1802, citing his confidence in Fourier's abilities, he appointed him <strong>Prefect of the Department of Isère</strong>, based in Grenoble — a substantial administrative position governing a large region of southeastern France. Fourier, who had no desire to leave academic life, could not refuse. He served with considerable distinction, overseeing major infrastructure works including the drainage of the swamps of Bourgoin and the construction of a new highway from Grenoble to Turin.
+      </p>
+      <p>
+        It was in this unlikely setting — between administrative dispatches and public works projects — that Fourier found the time to develop what would become his most enduring contribution to science. He began investigating the mathematical theory of heat conduction: how heat moves through solid bodies, how it dissipates, how it can be described with precision. The work he produced in Grenoble would eventually overturn fundamental assumptions in mathematics that had stood since the ancient Greeks.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Mathematics · 1807</div>
+      <h2 class="section-title">The Manuscript That Shook the Establishment</h2>
+      <p>
+        On 21 December 1807, Fourier submitted a 234-page handwritten manuscript — <em>Sur la propagation de la chaleur dans les corps solides</em> (On the Propagation of Heat in Solid Bodies) — to the mathematical and physical section of the <strong>Institut de France</strong> in Paris. The paper introduced what is now called the heat equation, a partial differential equation describing how heat diffuses through a solid over time. To solve it, Fourier made a claim so radical it stunned his audience: that <strong>any function, however irregular or discontinuous, could be expressed as an infinite sum of sine and cosine waves</strong> — what the world now calls a Fourier series.
+      </p>
+      <p>
+        The manuscript was sent for review to the Institut's four foremost mathematical minds: <strong>Joseph-Louis Lagrange, Pierre-Simon Laplace, Gaspard Monge, and Sylvestre Lacroix</strong>. The committee was divided. Laplace and Monge were broadly supportive of the approach. Lagrange, the most eminent mathematician of the age, was adamantly opposed. He had himself worked with trigonometric series decades earlier and had concluded that they could not represent arbitrary functions. He denounced Fourier's use of them as mathematically unjustifiable. The manuscript was never approved for publication.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Vindication · 1811–1822</div>
+      <h2 class="section-title">Rejected, Awarded, and Finally Published</h2>
+      <p>
+        Fourier did not abandon his work. In 1810, the Institut de France set a formal prize competition on the mathematical theory of heat propagation, with entries due by October 1811. Fourier revised and expanded his original memoir and submitted it for consideration. The prize committee — which now included <strong>Lagrange, Laplace, Adrien-Marie Legendre, René-Just Haüy, and Étienne Malus</strong> — awarded Fourier the prize. But the recognition came with a sting: the committee noted that his mathematical reasoning still lacked sufficient rigour, and Lagrange remained hostile to the core idea. The manuscript was awarded but again withheld from publication.
+      </p>
+      <p>
+        It was not until 1822 — fifteen years after his first submission — that Fourier finally published his masterwork under the title <em>Théorie analytique de la chaleur</em> (The Analytical Theory of Heat). By then Lagrange was dead. The work appeared in full, unchanged in its essential claims, and was immediately recognised as a landmark. The Fourier series went on to become one of the most powerful tools in all of mathematics and physics, forming the mathematical foundation of signal processing, quantum mechanics, medical imaging, and modern telecommunications — applications Fourier could not have imagined, built entirely on an idea that the establishment spent fifteen years refusing to accept.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Legacy</div>
+      <h2 class="section-title">The Mathematics Inside Every Modern Device</h2>
+      <p>
+        The concept Fourier was told was wrong now underlies virtually every piece of modern signal technology. MP3 audio compression, JPEG image encoding, MRI scanning, noise-cancelling headphones, radar, WiFi, and the entire field of digital signal processing all depend on the decomposition of complex signals into simpler wave components — the exact idea Lagrange rejected in 1807. The heat equation Fourier derived is itself one of the most important partial differential equations in physics, governing not only heat conduction but diffusion, financial modelling, and the spread of populations.
+      </p>
+      <p>
+        Fourier was elected to the Académie des Sciences in 1817 and became its perpetual secretary in 1822 — the same year his great work was finally published. He was elected to the Académie Française in 1826. His trajectory from orphaned tailor's son to Napoleon's Egypt, from reluctant provincial governor to the permanent infrastructure of modern science, remains one of the most remarkable journeys in the history of human thought.
+      </p>
+    </div>
+
+  </main>
+
+  <div class="pull-quote">
+    <blockquote>The deep study of nature is the most fruitful source of mathematical discoveries.</blockquote>
+    <cite>Joseph Fourier — Théorie analytique de la chaleur, 1822 · Public Domain</cite>
   </div>
+
+  <footer>
+    <span>The Great Minds of Science &nbsp;·&nbsp; Vol. II: Joseph Fourier</span>
+    <span>1768 – 1830 &nbsp;·&nbsp; Auxerre, France</span>
+  </footer>
 
   <script src="volumes.js"></script>
   <script>buildVolumesNav("fourier.html");</script>
