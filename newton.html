@@ -32,11 +32,11 @@
 
     /* ── MASTHEAD ── */
     .masthead {
-      border-bottom: 1px solid var(--rule);
       padding: 1.1rem 3.5rem;
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
     }
     .masthead-brand {
       font-family: 'Playfair Display', serif;
@@ -52,6 +52,66 @@
       text-transform: uppercase;
       color: var(--faint);
     }
+
+    /* ── VOLUMES LIBRARY ── */
+    .volumes-bar {
+      border-bottom: 1px solid var(--rule);
+      background: var(--surface);
+      padding: 0 3.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .volumes-bar::-webkit-scrollbar { display: none; }
+    .volumes-inner {
+      display: flex;
+      align-items: stretch;
+    }
+    .vol-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.75rem;
+      border-right: 1px solid var(--rule);
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .vol-card:first-child { padding-left: 0; }
+    .vol-card:hover:not(.active):not(.locked) { background: #efefef; }
+    .vol-card.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+    .vol-card.locked { opacity: 0.4; pointer-events: none; }
+    .vol-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .vol-card.locked .vol-num { color: var(--faint); }
+    .vol-info { display: flex; flex-direction: column; gap: 0.15rem; }
+    .vol-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1;
+    }
+    .vol-card.locked .vol-name { color: var(--soft); }
+    .vol-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .vol-card.active .vol-status { color: var(--accent); }
 
     /* ── HERO ── */
     .hero {
@@ -208,8 +268,44 @@
 
   <header class="masthead">
     <div class="masthead-brand">The Great Minds of Science</div>
-    <div class="masthead-vol">Volume I &nbsp;·&nbsp; Natural Philosophy</div>
+    <div class="masthead-vol">Natural Philosophy</div>
   </header>
+
+  <!-- ══ VOLUMES LIBRARY ══
+       To add a new volume: copy a vol-card block, update the vol number,
+       name, status, and href. Remove class="locked" when the page is live.
+  ══ -->
+  <nav class="volumes-bar" aria-label="All volumes">
+    <div class="volumes-inner" id="vol-list">
+
+      <a class="vol-card active" href="newton.html" aria-current="page">
+        <span class="vol-num">Vol. I</span>
+        <span class="vol-info">
+          <span class="vol-name">Isaac Newton</span>
+          <span class="vol-status">Published</span>
+        </span>
+      </a>
+
+      <a class="vol-card locked" href="fourier.html">
+        <span class="vol-num">Vol. II</span>
+        <span class="vol-info">
+          <span class="vol-name">Joseph Fourier</span>
+          <span class="vol-status">Coming soon</span>
+        </span>
+      </a>
+
+      <!-- ADD NEW VOLUMES BELOW THIS LINE
+      <a class="vol-card locked" href="lagrange.html">
+        <span class="vol-num">Vol. III</span>
+        <span class="vol-info">
+          <span class="vol-name">Joseph-Louis Lagrange</span>
+          <span class="vol-status">Coming soon</span>
+        </span>
+      </a>
+      -->
+
+    </div>
+  </nav>
 
   <section class="hero">
     <div class="hero-eyebrow">The Most Influential Scientist in History</div>
